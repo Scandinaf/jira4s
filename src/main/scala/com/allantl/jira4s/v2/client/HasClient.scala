@@ -4,7 +4,14 @@ import com.allantl.jira4s.auth._
 import com.allantl.jira4s.auth.jwt.JwtGenerator
 import com.allantl.jira4s.v2
 import com.allantl.jira4s.v2.domain.errors._
-import com.softwaremill.sttp.{DeserializationError, MediaTypes, Request, Response, StatusCodes, SttpBackend}
+import com.softwaremill.sttp.{
+  DeserializationError,
+  MediaTypes,
+  Request,
+  Response,
+  StatusCodes,
+  SttpBackend
+}
 import io.circe.parser._
 import cats.syntax.either._
 

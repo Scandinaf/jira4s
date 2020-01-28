@@ -4,17 +4,17 @@ import io.circe.generic.semiauto.{deriveDecoder, deriveEncoder}
 import io.circe.{Decoder, Encoder}
 
 case class WorkLog(
-                    id: String,
-                    self: String,
-                    author: Author,
-                    updateAuthor: Author,
-                    comment: String,
-                    created: String,
-                    updated: String,
-                    started: String,
-                    timeSpent: String,
-                    timeSpentSeconds: Int
-                  )
+    id: String,
+    self: String,
+    author: Author,
+    updateAuthor: Author,
+    comment: String,
+    created: String,
+    updated: String,
+    started: String,
+    timeSpent: String,
+    timeSpentSeconds: Int
+)
 
 object WorkLog {
   implicit val issueDecoder: Decoder[WorkLog] = deriveDecoder

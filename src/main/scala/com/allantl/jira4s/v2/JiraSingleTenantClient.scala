@@ -5,7 +5,7 @@ import com.allantl.jira4s.v2.client._
 import com.softwaremill.sttp.SttpBackend
 
 sealed trait JiraSingleTenantClient[R[_]]
-  extends IssueClient[R, NoCtx]
+    extends IssueClient[R, NoCtx]
     with WorkLogClient[R, NoCtx]
     with SearchClient[R, NoCtx]
     with ProjectClient[R, NoCtx]
@@ -16,7 +16,7 @@ sealed trait JiraSingleTenantClient[R[_]]
 object JiraSingleTenantClient {
 
   def apply[R[_], S]()(
-    implicit sttpBackend: SttpBackend[R, S]
+      implicit sttpBackend: SttpBackend[R, S]
   ): JiraSingleTenantClient[R] = {
     val conf = Config.loadSingleTenantConfig()
     new JiraSingleTenantClient[R] {
@@ -26,7 +26,7 @@ object JiraSingleTenantClient {
   }
 
   def apply[R[_], S](apiToken: ApiToken)(
-    implicit sttpBackend: SttpBackend[R, S]
+      implicit sttpBackend: SttpBackend[R, S]
   ): JiraSingleTenantClient[R] =
     new JiraSingleTenantClient[R] {
       override protected lazy val backend = sttpBackend
@@ -34,7 +34,7 @@ object JiraSingleTenantClient {
     }
 
   def apply[R[_], S](basicAuth: BasicAuthentication)(
-    implicit sttpBackend: SttpBackend[R, S]
+      implicit sttpBackend: SttpBackend[R, S]
   ): JiraSingleTenantClient[R] =
     new JiraSingleTenantClient[R] {
       override protected lazy val backend = sttpBackend

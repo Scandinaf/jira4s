@@ -27,8 +27,8 @@ class WorkLogClientSpec extends Specification {
       implicit val testingBackend = backend
         .whenRequestMatches { r =>
           r.method.m == "POST" &&
-            r.uri.path.endsWith(List("worklog")) &&
-            r.uri.queryFragments == Seq(Value("adjustEstimate=leave"))
+          r.uri.path.endsWith(List("worklog")) &&
+          r.uri.queryFragments == Seq(Value("adjustEstimate=leave"))
         }
         .thenRespondWithCode(code = 201, msg = loadJson("workLog-ref.json"))
 
@@ -46,8 +46,8 @@ class WorkLogClientSpec extends Specification {
       implicit val testingBackend = backend
         .whenRequestMatches { r =>
           r.method.m == "PUT" &&
-            r.uri.path.endsWith(List("worklog", workLogId)) &&
-            r.uri.queryFragments == Seq(Value("adjustEstimate=auto"))
+          r.uri.path.endsWith(List("worklog", workLogId)) &&
+          r.uri.queryFragments == Seq(Value("adjustEstimate=auto"))
         }
         .thenRespondWithCode(code = 200)
 
@@ -66,8 +66,8 @@ class WorkLogClientSpec extends Specification {
       implicit val testingBackend = backend
         .whenRequestMatches { r =>
           r.method.m == "DELETE" &&
-            r.uri.path.endsWith(List("worklog", workLogId)) &&
-            r.uri.queryFragments == Seq(Value("adjustEstimate=new&newEstimate=2d"))
+          r.uri.path.endsWith(List("worklog", workLogId)) &&
+          r.uri.queryFragments == Seq(Value("adjustEstimate=new&newEstimate=2d"))
         }
         .thenRespondWithCode(code = 204)
 

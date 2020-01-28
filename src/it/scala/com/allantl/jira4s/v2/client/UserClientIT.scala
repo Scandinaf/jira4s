@@ -16,8 +16,10 @@ class UserClientIT extends IntegrationTest {
         Set(UserExpand.Groups, UserExpand.ApplicationRoles)
       )
 
-      val applicationGroupsNonEmpty = user.right.toOption.flatMap(_.applicationRoles.map(_.items.nonEmpty)).getOrElse(false)
-      val groupsNonEmpty = user.right.toOption.flatMap(_.groups.map(_.items.nonEmpty)).getOrElse(false)
+      val applicationGroupsNonEmpty =
+        user.right.toOption.flatMap(_.applicationRoles.map(_.items.nonEmpty)).getOrElse(false)
+      val groupsNonEmpty =
+        user.right.toOption.flatMap(_.groups.map(_.items.nonEmpty)).getOrElse(false)
 
       user must beRight
       applicationGroupsNonEmpty must beTrue
