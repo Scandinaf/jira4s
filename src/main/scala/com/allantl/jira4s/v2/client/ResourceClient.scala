@@ -11,6 +11,7 @@ private[jira4s] trait ResourceClient[R[_], T <: AuthContext] extends HasClient[R
 
   def getResourceJson[E: Decoder](
       path: String,
+      params: Map[String, String] = Map.empty,
       headers: Map[String, String] = Map.empty,
   )(
       implicit userCtx: T
@@ -19,6 +20,7 @@ private[jira4s] trait ResourceClient[R[_], T <: AuthContext] extends HasClient[R
       .get(
         uri"$restEndpoint"
           .path(path)
+          .params(params)
       )
       .headers(headers)
       .jiraAuthenticated
@@ -28,6 +30,7 @@ private[jira4s] trait ResourceClient[R[_], T <: AuthContext] extends HasClient[R
 
   def getResourceHtml(
       path: String,
+      params: Map[String, String] = Map.empty,
       headers: Map[String, String] = Map.empty,
   )(
       implicit userCtx: T
@@ -36,6 +39,7 @@ private[jira4s] trait ResourceClient[R[_], T <: AuthContext] extends HasClient[R
       .get(
         uri"$restEndpoint"
           .path(path)
+          .params(params)
       )
       .headers(headers)
       .jiraAuthenticated
