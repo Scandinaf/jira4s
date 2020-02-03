@@ -1,19 +1,12 @@
 package com.allantl.jira4s.v2.client
 
+import cats.syntax.either._
 import com.allantl.jira4s.auth._
 import com.allantl.jira4s.auth.jwt.JwtGenerator
 import com.allantl.jira4s.v2
 import com.allantl.jira4s.v2.domain.errors._
-import com.softwaremill.sttp.{
-  DeserializationError,
-  MediaTypes,
-  Request,
-  Response,
-  StatusCodes,
-  SttpBackend
-}
+import com.softwaremill.sttp.{DeserializationError, MediaTypes, Request, Response, StatusCodes, SttpBackend}
 import io.circe.parser._
-import cats.syntax.either._
 
 private[jira4s] trait HasAuthConfig {
 
@@ -87,6 +80,13 @@ private[jira4s] trait HasClient[R[_]] extends HasAuthConfig with HasBackend[R] {
       resp.body.bimap(
         err => parseError(err, resp.code),
         _ => ()
+      )
+    }
+
+    def getContent: R[Either[JiraError, String]] = rm.map(r) { resp =>
+      resp.body.bimap(
+        err => parseError(err, resp.code),
+        content => content
       )
     }
   }

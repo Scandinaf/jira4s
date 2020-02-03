@@ -6,6 +6,7 @@ import com.softwaremill.sttp.SttpBackend
 
 sealed trait JiraMultiTenantClient[R[_]]
     extends IssueClient[R, AuthContext]
+    with ResourceClient[R, AuthContext]
     with WorkLogClient[R, AuthContext]
     with SearchClient[R, AuthContext]
     with ProjectClient[R, AuthContext]
