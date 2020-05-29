@@ -4,7 +4,7 @@ import io.circe.{Decoder, Encoder}
 import io.circe.generic.semiauto.{deriveDecoder, deriveEncoder}
 
 case class SearchResults(
-    expand: String,
+    expand: Option[String] = None,
     startAt: Int,
     maxResults: Int,
     total: Int,
