@@ -46,14 +46,12 @@ object IssuePayload {
         fields <- c
           .downField("fields")
           .as[Map[String, Json]]
-          .right
           .map(_.toSeq.map {
             case (key, value) =>
               IssueField(key, value)
           })
-          .right
-        properties <- c.downField("properties").as[Option[Seq[EntityProperty]]].right
-        update <- c.downField("update").as[Option[Json]].right
+        properties <- c.downField("properties").as[Option[Seq[EntityProperty]]]
+        update <- c.downField("update").as[Option[Json]]
       } yield IssuePayload(fields, properties, update)
   }
 }

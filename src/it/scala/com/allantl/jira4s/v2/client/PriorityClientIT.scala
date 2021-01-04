@@ -13,9 +13,9 @@ class PriorityClientIT extends IntegrationTest {
     "get priority by id" in {
       val res =
         for {
-          priorities <- client.getPriorities().right.toOption
+          priorities <- client.getPriorities().toOption
           id <- priorities.headOption.map(_.id)
-          priority <- client.getPriority(id).right.toOption
+          priority <- client.getPriority(id).toOption
         } yield priority
 
       res must beSome

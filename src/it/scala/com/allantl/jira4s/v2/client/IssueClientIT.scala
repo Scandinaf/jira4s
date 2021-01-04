@@ -16,7 +16,7 @@ class IssueClientIT extends IntegrationTest with ProjectRefContext {
       val issue = client.createIssue(payload)
       issue must beRight
 
-      val issueId = issue.right.toOption.map(_.id).getOrElse("")
+      val issueId = issue.toOption.map(_.id).getOrElse("")
       val createdIssue = client.getIssue(issueId)
 
       createdIssue must beRight

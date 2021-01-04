@@ -42,13 +42,13 @@ object HistoryItem {
 
   implicit val decoder: Decoder[HistoryItem] = (c: HCursor) =>
     for {
-      field <- c.downField("field").as[String].right
-      fieldType <- c.downField("fieldtype").as[String].right
-      fieldId <- c.downField("fieldId").as[Option[String]].right
-      from <- c.downField("from").as[Option[String]].right
-      fromString <- c.downField("fromString").as[Option[String]].right
-      to <- c.downField("to").as[Option[String]].right
-      toString <- c.downField("toString").as[Option[String]].right
+      field <- c.downField("field").as[String]
+      fieldType <- c.downField("fieldtype").as[String]
+      fieldId <- c.downField("fieldId").as[Option[String]]
+      from <- c.downField("from").as[Option[String]]
+      fromString <- c.downField("fromString").as[Option[String]]
+      to <- c.downField("to").as[Option[String]]
+      toString <- c.downField("toString").as[Option[String]]
     } yield
       HistoryItem(
         field,

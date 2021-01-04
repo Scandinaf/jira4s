@@ -32,8 +32,8 @@ private[jira4s] trait HasBackend[R[_]] {
 private[jira4s] trait HasClient[R[_]] extends HasAuthConfig with HasBackend[R] {
 
   private def parseError(errorMsg: String, status: Int): JiraError = {
-    val jiraResponseError = parse(errorMsg).right.toOption
-      .flatMap(_.as[JiraResponseError].right.toOption)
+    val jiraResponseError = parse(errorMsg).toOption
+      .flatMap(_.as[JiraResponseError].toOption)
 
     val errMsg = jiraResponseError
       .flatMap(_.errorMessages.headOption)

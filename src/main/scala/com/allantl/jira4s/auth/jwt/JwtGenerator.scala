@@ -18,12 +18,12 @@ object JwtGenerator {
       acConfig: AcJwtConfig
   ): Either[JwtGeneratorError, String] =
     for {
-      _ <- isSecretKeyLessThan256Bits(acContext).right
-      uri <- toJavaUri(uri).right
-      hostUri <- toJavaUri(acContext.instanceUrl).right
-      _ <- isAbsoluteUri(uri).right
-      _ <- isRequestToHost(uri, hostUri).right
-      token <- createToken(httpMethod, uri).right
+      _ <- isSecretKeyLessThan256Bits(acContext)
+      uri <- toJavaUri(uri)
+      hostUri <- toJavaUri(acContext.instanceUrl)
+      _ <- isAbsoluteUri(uri)
+      _ <- isRequestToHost(uri, hostUri)
+      token <- createToken(httpMethod, uri)
     } yield token
 
   private def createToken(httpMethod: String, uri: URI)(

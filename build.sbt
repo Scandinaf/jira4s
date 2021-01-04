@@ -5,14 +5,14 @@ organization in ThisBuild := "com.github.allantl"
 homepage in ThisBuild := Some(url("https://github.com/allantl/jira4s"))
 licenses in ThisBuild := List("Apache-2.0" -> url("http://opensource.org/licenses/Apache-2.0"))
 
-val scala212Version = "2.12.8"
-
-crossScalaVersions := Seq(scala212Version)
+scalaVersion := "2.13.4"
+crossScalaVersions := Seq(scalaVersion.value)
 
 val CirceVersion = "0.13.0"
-val AtlassianJwtVersion = "0.1.7"
-val Specs2Version = "4.5.1"
-val SttpVersion = "1.6.2"
+val AtlassianJwtVersion = "0.1.8"
+val Specs2Version = "4.10.5"
+val SttpVersion = "1.7.2"
+val TypesafeConfigVersion = "1.4.1"
 
 lazy val publishSettings = Seq(
   releasePublishArtifactsAction := PgpKeys.publishSigned.value,
@@ -71,7 +71,7 @@ lazy val root = (project in file("."))
       "io.toolsplus" %% "atlassian-jwt-core" % AtlassianJwtVersion,
       "com.softwaremill.sttp" %% "core" % SttpVersion,
       "com.softwaremill.sttp" %% "circe" % SttpVersion,
-      "com.typesafe" % "config" % "1.3.2"
+      "com.typesafe" % "config" % TypesafeConfigVersion
     ),
     libraryDependencies ++= Seq(
       "org.specs2" %% "specs2-core" % Specs2Version % "it,test",
