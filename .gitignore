@@ -8,6 +8,14 @@
 
 *.sublime-*
 
+.bloop
+.bsp
+
+.metals
+metals.sbt
+
+.vscode
+
 .cache
 .classpath
 .project

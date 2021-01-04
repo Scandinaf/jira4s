@@ -51,12 +51,11 @@ class JwtGeneratorSpec extends Specification {
       val jwtToken = JwtGenerator.generateToken("GET", atlassianUrl)
 
       val expiry =
-        jwtToken.right.flatMap(JwtParser.parse).right.map(_.claims.getExpirationTime.getTime / 1000)
+        jwtToken.flatMap(JwtParser.parse).map(_.claims.getExpirationTime.getTime / 1000)
       val now = System.currentTimeMillis / 1000
       val expectedExpiry = now + acConfig.jwtExpirationInSeconds
 
-      expiry must beRight
-      expiry.right.get must beCloseTo(expectedExpiry +/- 2)
+      expiry must beRight(beCloseTo(expectedExpiry +/- 2))
     }
   }
 }
